@@ -1,24 +1,20 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
 import { CachingService } from './caching.service';
-import cachingConfig from './config/caching.config';
 
 @Injectable()
 export class RedisService extends CachingService {
   private redisClient: Redis;
 
-  constructor(
-    @Inject(cachingConfig.KEY)
-    private readonly cachingConfiguration: ConfigType<typeof cachingConfig>,
-  ) {
+  constructor(private readonly configService: ConfigService) {
     super();
   }
 
   onApplicationBootstrap() {
     this.redisClient = new Redis({
-      host: this.cachingConfiguration.host,
-      port: this.cachingConfiguration.port,
+      host: this.configService.get('cache.host'),
+      port: this.configService.get('cache.port'),
     });
   }
 

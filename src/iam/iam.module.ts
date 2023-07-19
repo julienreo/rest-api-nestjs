@@ -13,7 +13,6 @@ import { APP_GUARD } from '@nestjs/core';
 import { AccessTokenGuard } from './authentication/guards/access-token/access-token.guard';
 import { RedisService } from 'src/services/caching/redis.service';
 import { CachingService } from 'src/services/caching/caching.service';
-import cachingConfig from 'src/services/caching/config/caching.config';
 import { PermissionsGuard } from './authorization/guards/permissions.guard';
 
 @Module({
@@ -24,8 +23,6 @@ import { PermissionsGuard } from './authorization/guards/permissions.guard';
     JwtModule.registerAsync(jwtConfig.asProvider()),
     // Load JWT config
     ConfigModule.forFeature(jwtConfig),
-    // Load caching config
-    ConfigModule.forFeature(cachingConfig),
   ],
   controllers: [AuthenticationController],
   providers: [
