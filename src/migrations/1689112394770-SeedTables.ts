@@ -121,7 +121,7 @@ export class SeedTables1689112394770 implements MigrationInterface {
       lastname: 'Martin',
       email: 'antonin.martin@infinity-sport.com',
       password: '$2b$10$qJCSxCnnYfrozefsca.Ytepvn3vwCO7xSYVKThrRMcIylTyOBX6Ty',
-      company: biblioCompany,
+      company: infinitySportCompany,
       role: infinitySportEmployeeRole,
     });
   }
