@@ -102,8 +102,8 @@ export class AuthenticationService {
     const userData: UserData = {
       id: user.id,
       email: user.email,
-      role: user.role.name,
-      permissions: user.role.permissions.map(({ name }) => name),
+      role: user.role?.name,
+      permissions: user.role?.permissions?.map(({ name }) => name),
     };
     await this.cachingService.set(
       `user:${user.id}:userData`,
